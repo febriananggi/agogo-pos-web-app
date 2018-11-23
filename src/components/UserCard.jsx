@@ -7,7 +7,7 @@ import '../sass/UserCard.scss';
 const UserCard = (props) => {
   return (
     <Card className="UserCard">
-      <Link to={'/' + props.userIndex}>
+      <Link to={'/login/' + props.userIndex}>
         <CardImg top width="100%" src={props.userAvatar} alt={props.userName} />
         <CardBody>
           <CardTitle className={props.colorTitle}>{props.userName ? props.userName : 'User Name'}</CardTitle>

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import UserCard from './UserCard'
-import Keyboard from "react-simple-keyboard";
 import CalcNumeric from './CalcNumeric'
 import { FormGroup, Input, Label } from 'reactstrap';
 import axios from 'axios'
@@ -54,9 +53,6 @@ class Login extends Component {
         });
       });
     });
-
-    
-    
   }
 
   onChange = input => {
@@ -75,19 +71,13 @@ class Login extends Component {
     this.login()
   }
 
-  encodedData(data) {
-    return Object.keys(data).map((key) => {
-        return encodeURIComponent(key) + '=' + encodeURIComponent(data[key]);
-    }).join('&');
-  }
-
   login = () => {
     const userData = {
       username: this.state.username,
       password: this.state.password,
     };
 
-    axios.post(`http://dev.wakwaw.com/agogo/wp-json/jwt-auth/v1/token`, this.encodedData(userData) )
+    axios.post(`http://dev.wakwaw.com/agogo/wp-json/jwt-auth/v1/token`, userData )
       .then(res => {
         console.log(res);
         console.log(res.data);
@@ -105,7 +95,7 @@ class Login extends Component {
   render() {
 
     if(this.state.redirect || sessionStorage.getItem('token')){
-      return (<Redirect to={'/'} />);
+      return (<Redirect to={'/saldo'} />);
     }
 
     return (

@@ -41,6 +41,17 @@
       border-style: solid;
       border-width: 20px 20px 20px 0;
       border-color: transparent $red transparent transparent;
+      transition: all .15s ease-in-out; -webkit-transition: all 0.15s ease-in-out;
+    }
+    &.saldo{
+      &::before{
+        top: 7rem;
+      }
+    }
+    &.pin{
+      &::before{
+        top: 16.5rem;
+      }
     }
   }
 }
