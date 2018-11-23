@@ -1,0 +1,64 @@
+@import 'vars';
+
+html,
+body,
+#root,
+.App{
+  height: 100%;
+  background-color: #000;
+  font-family: 'Open Sans', sans-serif;
+  background-image: url('../img/bg-login4.jpg');
+  background-size: cover;
+}
+.App{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+a{
+  text-decoration: none;
+  color: black;
+  &:hover{
+    color: $red;
+    text-decoration: none;
+  }
+}
+
+.Header{
+  position: fixed;
+}
+
+.anim{
+  transition: all .3s ease-in-out; -webkit-transition: all 0.3s ease-in-out;
+ }
+
+ .bg-orange{
+   background-color: $orange !important;
+ }
+ .bg-red{
+  background-color: $red !important;
+}
+.bg-light-grey{
+  background-color: $lightGrey !important;
+}
+.bg-black{
+  background-color: black !important;
+}
+
+ .text-black{
+  color: black;
+}
+.text-white{
+  color: white;
+}
+.text-red{
+  color: $red;
+}
+.text-orange{
+  color: $orange;
+}
+.text-lightGrey{
+  color: $lightGrey;
+}
