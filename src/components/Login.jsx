@@ -115,10 +115,10 @@ class Login extends Component {
           <div className="row">
             <div className="col login-header">
               <div className="row">
-                <div className="col-6">
-                  <a href="/"><i className="fas fa-arrow-left mr-5"></i> Sign In</a> 
+                <div className="col-9">
+                  <a href="/"><i className="fas fa-arrow-left mr-5"></i></a> SIGN IN
                 </div>
-                <div className="col-6 text-right">
+                <div className="col-3 text-right">
                   <img src={LogoAgogo} className="img-fluid" />
                 </div>
               </div>
