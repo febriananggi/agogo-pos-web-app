@@ -1,15 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Redirect } from 'react-router-dom'
 import { Provider, Subscribe } from 'unstated'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './sass/index.scss';
 import './sass/Forms.scss';
+import { Button } from 'reactstrap';
 
 import CounterContainer from './containers/counter'
 import App from './App';
 
 import * as serviceWorker from './serviceWorker';
+
+const logout = () => {
+  console.log("LOGOUT")
+  sessionStorage.setItem('token', '');
+  sessionStorage.clear();
+  return (<Redirect to={'/'} />);
+}
 
 ReactDOM.render(
   <Provider>
@@ -21,6 +30,8 @@ ReactDOM.render(
     </Subscribe>
 
     <App />
+
+    <footer className="Footer"><Button onClick={logout}>Logout</Button></footer>
 
   </Provider>, 
 document.getElementById('root'));

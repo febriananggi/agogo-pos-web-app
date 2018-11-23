@@ -26,9 +26,17 @@ a{
   }
 }
 
-.Header{
+.Header, 
+.Footer{
+  width: 100%;
   position: fixed;
 }
+.Footer{
+  bottom: 0;
+  text-align: right;
+  color: white;
+}
+
 
 .anim{
   transition: all .3s ease-in-out; -webkit-transition: all 0.3s ease-in-out;
