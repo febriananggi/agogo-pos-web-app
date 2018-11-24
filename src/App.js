@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Route, BrowserRouter, Switch, Redirect } from 'react-router-dom'
+import { Route, BrowserRouter, Switch, Redirect, Link } from 'react-router-dom'
 import decode from 'jwt-decode';
+import { Button } from 'reactstrap';
 
 import SplashScreen from './components/containers/SplashScreen';
 import Login from './components/Login';
@@ -42,6 +43,12 @@ class App extends Component {
   render() {
     console.log(isLoggedIn())
 
+    const logout = () => {
+      console.log("LOGOUT")
+      sessionStorage.setItem('token', '');
+      sessionStorage.clear();
+    }
+
     return (
       <BrowserRouter>
         <div className="App">
@@ -49,7 +56,16 @@ class App extends Component {
             <Route exact path='/' component={SplashScreen}/>
             <Route path='/login/:user_index' component={Login} />
             <ProtectedRoute path='/saldo' component={SaldoAwal} />
+            <Route path="/logout" render={() => {
+                logout();
+                return <Redirect to={{ pathname: "/" }} />;
+                }}
+            />
           </Switch>
+
+          <footer className="Footer">
+            <Link className="btn-logout" to='/logout' ><i class="fas fa-power-off"></i></Link>
+          </footer>
         </div>
       </BrowserRouter>
     );
