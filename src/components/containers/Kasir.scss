@@ -1,0 +1,97 @@
+@import "../../sass/vars";
+
+.kasir{
+  position: relative;
+  width: 100%;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+  &-cart{
+    background-color: white;
+  }
+  &-product{
+    overflow: auto;
+    background-color: transparent;
+    padding-bottom: 6rem;
+  }
+
+  .product-nav,
+  .cart-nav,
+  .cart-header{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 50%;
+    background-color: black;
+    line-height: 1.5rem;
+    text-align: right;
+    .navbar{
+      padding: 0;
+    }
+    .nav-link{
+      padding: 1rem 1.5rem;
+      font-weight: 700;
+      color: white;
+      text-align: center;
+      .fas{
+        font-size: 2rem;
+      }
+      &:hover{
+        background-color: $red;
+      }
+    }
+  }
+  .cart-nav{
+    left: 0;
+    text-align: left;
+    background-color: #f1f1f1;
+    color: black;
+    font-style: italic;
+      font-weight: 700;
+    .nav-link{
+      color: black;
+      text-align: center;
+      &:hover{
+        background-color: $orange;
+      }
+    }
+
+    #productQRCode{
+      width: 170px;
+    }
+    #productQRCodeQty{
+      width: 70px;
+      text-align: center;
+    }
+    &-input{
+      display: inline-block;
+      border-radius: 3rem;
+      border: solid 3px black;
+      height: 48px;
+    }
+  }
+
+  .cart-header{
+    bottom: inherit;
+    top: 0;
+    left: 0;
+    color: white;
+    background-color: black;
+    a{
+      color: white;
+    }
+    .navbar-brand{
+      font-style: italic;
+      font-weight: 700;
+    }
+    .navbar-close{
+      .fas{
+        font-size: 2rem;
+        margin-top: -10px;
+        position: relative;
+        top: 5px;
+      }
+      
+    }
+  }
+}
