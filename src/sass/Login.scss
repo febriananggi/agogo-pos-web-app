@@ -1,6 +1,7 @@
 @import "vars";
 
-.Login{
+.login{
+  width: 720px;
   // display: flex;
   align-items: center;
   // justify-content: center;
@@ -27,6 +28,7 @@
 
   .box-calc{
     width: auto;
+    height: 400px;
     background-color: $red;
     display: flex;
     align-items: center;
@@ -62,6 +64,6 @@
   color: white;
   font-size: 2.5rem;
   padding: 2rem;
-  display: inline-block;
+  float: left;
   line-height: 1;
 }

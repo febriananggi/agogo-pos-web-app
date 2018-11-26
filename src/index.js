@@ -6,7 +6,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './sass/index.scss';
 import './sass/Forms.scss';
 
-import CounterContainer from './containers/counter'
+import ModalsContainer from './components/containers/ModalsContainer'
+import Modals from './components/Modals';
 import App from './App';
 
 import * as serviceWorker from './serviceWorker';
@@ -14,9 +15,16 @@ import * as serviceWorker from './serviceWorker';
 ReactDOM.render(
   <Provider>
 
-    <Subscribe to={[CounterContainer]}>
-      {counterContainer => (
-        <header className="Header">Count: { counterContainer.state.count }</header>
+    <Subscribe to={[ModalsContainer]}>
+      {modalsContainer => (
+        <Modals 
+          type={modalsContainer.state.modalType} 
+          modal={modalsContainer.state.modal} 
+          toggle={() => modalsContainer.toggleModal(modalsContainer.state.modalType, modalsContainer.state.modalSize)} 
+          toggleModal={modalsContainer.toggleModal} 
+          size={modalsContainer.state.modalSize} 
+          className="text-center" 
+        />
       )}
     </Subscribe>
 

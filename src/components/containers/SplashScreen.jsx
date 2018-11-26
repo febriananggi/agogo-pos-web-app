@@ -18,11 +18,15 @@ class LoginSplashScreen extends Component {
     })
   }
 
+  
+
   render() {
     console.log(this.state.users)
     return (
-      <section className="LoginSplashScreen container">
-        <UserList users={this.state.users} />
+      <section className="LoginSplashScreen centered">
+        <div className="container">
+          < UserList users={this.state.users} />
+        </div>
       </section>
     );
   }

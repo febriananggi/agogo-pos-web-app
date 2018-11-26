@@ -7,10 +7,14 @@ body,
   height: 100%;
   background-color: #000;
   font-family: 'Open Sans', sans-serif;
-  background-image: url('../img/bg-login4.jpg');
+  background-image: url('../img/bg-login.jpg');
   background-size: cover;
+  background-attachment: fixed;
 }
-.App{
+.fullscreen{
+  height: 100%;
+}
+.centered{
   display: flex;
   align-items: center;
   justify-content: center;
@@ -30,11 +34,16 @@ a{
 .Footer{
   width: 100%;
   position: fixed;
+  left: 0;
 }
 .Footer{
   bottom: 0;
   text-align: right;
   color: white;
+  width: auto;
+  &.right{
+    right: 0;
+  }
 }
 
 
@@ -72,3 +81,18 @@ a{
 }
 
 
+// BOOTSTRAP OVERWRITE
+.btn{
+  border-radius: 3rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.btn-fullscreen{
+  color: white;
+  font-size: 2.5rem;
+  padding: 2rem;
+  display: inline-block;
+  line-height: 1;
+  float: right;
+}

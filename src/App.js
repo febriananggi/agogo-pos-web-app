@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import { Route, BrowserRouter, Switch, Redirect, Link } from 'react-router-dom'
-import decode from 'jwt-decode';
 import { Button } from 'reactstrap';
+import { Subscribe } from 'unstated'
+import ModalsContainer from './components/containers/ModalsContainer'
+
+import decode from 'jwt-decode';
 
 import SplashScreen from './components/containers/SplashScreen';
 import Login from './components/Login';
 import SaldoAwal from './components/SaldoAwal';
+import Kasir from './components/containers/Kasir';
+
+import Fullscreen from "react-full-screen";
+
 
 const isTokenExpired = (token) => {
   try {
@@ -38,36 +45,84 @@ const ProtectedRoute = ({ component: Component, ...rest }) => (
   )} />
 );
 
+const ProtectedRouteLogged = ({ component: Component, ...rest }) => (
+  <Route {...rest} render={(props) => (
+    isLoggedIn() === false
+      ? <Component {...props} />
+      : <Redirect to={{
+          pathname: '/saldo',
+          state: { from: props.location }
+        }} />
+  )} />
+);
+
 class App extends Component {
+
+  state = {
+    isFull: true
+  }
+
+  componentWillMount() {
+    this.goFull();
+  }
+
+  logout = () => {
+    console.log("LOGOUT")
+    sessionStorage.setItem('token', '');
+    sessionStorage.clear();
+  }
+
+  setCurrentPage = (page) => {
+    this.setState({
+      page: page
+    })
+  }
+
+  goFull = () => {
+    this.setState({ isFull: true });
+  }
 
   render() {
     console.log(isLoggedIn())
 
-    const logout = () => {
-      console.log("LOGOUT")
-      sessionStorage.setItem('token', '');
-      sessionStorage.clear();
-    }
-
     return (
-      <BrowserRouter>
-        <div className="App">
-          <Switch>
-            <Route exact path='/' component={SplashScreen}/>
-            <Route path='/login/:user_index' component={Login} />
-            <ProtectedRoute path='/saldo' component={SaldoAwal} />
-            <Route path="/logout" render={() => {
-                logout();
-                return <Redirect to={{ pathname: "/" }} />;
-                }}
-            />
-          </Switch>
 
-          <footer className="Footer">
-            <Link className="btn-logout" to='/logout' ><i class="fas fa-power-off"></i></Link>
-          </footer>
-        </div>
-      </BrowserRouter>
+      <Fullscreen enabled={this.state.isFull} onChange={isFull => this.setState({isFull})}>
+
+        <footer className="Footer right">              
+          <a href="#" className="btn-fullscreen" onClick={this.goFull} >
+            <i className="fas fa-expand-arrows-alt"></i>
+          </a>
+        </footer>
+
+        <Subscribe to={[ModalsContainer]}>
+          {modals => (
+
+          <BrowserRouter>
+            <div className="App">
+
+              <Switch>
+                <ProtectedRouteLogged exact path='/' component={SplashScreen}/>
+                <ProtectedRouteLogged path='/login/:user_index' component={Login} />
+                <ProtectedRoute path='/saldo' component={SaldoAwal} />
+                <Route path="/logout" 
+                  render={() => {
+                    this.logout();
+                    return <Redirect to={{ pathname: "/" }} />;
+                  }}
+                />
+                <ProtectedRoute path='/kasir' component={Kasir} />
+              </Switch>
+              
+            </div>
+          </BrowserRouter>
+
+          )}
+        </Subscribe>
+
+        
+
+      </Fullscreen>
     );
   }
 }
