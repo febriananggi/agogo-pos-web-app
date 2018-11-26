@@ -137,7 +137,7 @@ class SaldoAwal extends Component {
                           onFocus={() => this.onFocus('pin') } 
                           value={this.state.pin} 
                           onChange={e => this.onChangeInputPIN(e)}
-                          type="text" name="pin" id="pin" placeholder="PIN"  size="lg" className="text-center mb-5" 
+                          type="password" name="pin" id="pin" placeholder="PIN"  size="lg" className="text-center mb-5" 
                         />
 
                       </FormGroup>
