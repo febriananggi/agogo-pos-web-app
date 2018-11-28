@@ -14,7 +14,7 @@ import Products from '../products/Products'
 import ProductCategories from '../products/ProductCategories'
 import Cart from '../carts/Cart'
 
-import './Kasir.scss';
+import './Cashier.scss';
 
 class Kasir extends Component {
 
@@ -65,7 +65,7 @@ class Kasir extends Component {
             <Row className="cart-nav no-gutters">
               <Col xs="12">
                 <Navbar expand="md">
-                  <NavbarBrand className="ml-4">
+                  <NavbarBrand className="ml-4 mr-0">
                     <Input className="cart-nav-input mr-2" type="input" name="qrcode" id="productQRCode" placeholder="QR Code ..." />
                     <Input className="cart-nav-input" type="number" name="qrcodeQty" id="productQRCodeQty" placeholder="0" />
                   </NavbarBrand>

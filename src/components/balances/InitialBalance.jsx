@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { FormGroup, Input, Label } from 'reactstrap';
-import LogoAgogo from "./../img/logo-agogo.png";
+import LogoAgogo from "./../../img/logo-agogo.png";
 import Keyboard from "react-simple-keyboard";
 import "react-simple-keyboard/build/css/index.css";
-import "../sass/CalcNumeric.scss";
-import '../sass/Login.scss';
+import "../calcs/CalcNumeric.scss";
+import '../logins/Login.scss';
 import { Redirect } from 'react-router-dom'
 
 import { Provider, Subscribe } from 'unstated'
-import ModalsContainer from './containers/ModalsContainer'
+import ModalsContainer from '../modals/ModalsContainer'
 
 var classNames = require('classnames');
 
@@ -93,7 +93,7 @@ class SaldoAwal extends Component {
   render() {
 
     if(this.state.redirect){
-      return (<Redirect to={'/kasir'} />);
+      return (<Redirect to={'/cashier'} />);
     }
 
     return (
@@ -207,12 +207,6 @@ class SaldoAwal extends Component {
                 </div>
                 
               </div>
-
-              {/* FOOTER */}
-              <footer className="Footer">              
-                {/* <Button onClick={() => modals.setCurrentPage('login')}>SET CURRENT PAGE</Button> */}
-                {<a href="#" className="btn-logout" onClick={() => modals.toggleModal('saldo', '')} ><i class="fas fa-power-off"></i></a>}
-              </footer>
 
             </div>
             

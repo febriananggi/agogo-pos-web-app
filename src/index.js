@@ -6,8 +6,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './sass/index.scss';
 import './sass/Forms.scss';
 
-import ModalsContainer from './components/containers/ModalsContainer'
-import Modals from './components/Modals';
+import RootContainer from './components/roots/RootContainer'
+import ModalsContainer from './components/modals/ModalsContainer'
+
+import Modals from './components/modals/Modals';
 import App from './App';
 
 import * as serviceWorker from './serviceWorker';
@@ -15,20 +17,27 @@ import * as serviceWorker from './serviceWorker';
 ReactDOM.render(
   <Provider>
 
-    <Subscribe to={[ModalsContainer]}>
-      {modalsContainer => (
-        <Modals 
-          type={modalsContainer.state.modalType} 
-          modal={modalsContainer.state.modal} 
-          toggle={() => modalsContainer.toggleModal(modalsContainer.state.modalType, modalsContainer.state.modalSize)} 
-          toggleModal={modalsContainer.toggleModal} 
-          size={modalsContainer.state.modalSize} 
-          className="text-center" 
-        />
+    <Subscribe to={[RootContainer, ModalsContainer]}>
+      {(rootStore, modalStore) => (
+        <React.Fragment>
+          <Modals 
+            type={modalStore.state.modalType} 
+            modal={modalStore.state.modal} 
+            toggle={() => modalStore.toggleModal(modalStore.state.modalType, modalStore.state.modalSize)} 
+            toggleModal={modalStore.toggleModal} 
+            size={modalStore.state.modalSize} 
+            className="text-center" 
+          />
+
+          <App 
+            rootStore={rootStore} 
+            modalStore={modalStore} 
+          />
+
+        </React.Fragment>
+
       )}
     </Subscribe>
-
-    <App />
 
   </Provider>, 
 document.getElementById('root'));

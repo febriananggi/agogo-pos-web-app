@@ -30,6 +30,9 @@
     }
     .nav-link{
       padding: 1rem 1.5rem;
+      @media only screen and (max-width: 1024px) {
+        padding: 1rem 1.25rem;
+      }
       font-weight: 700;
       color: white;
       text-align: center;
@@ -58,10 +61,16 @@
 
     #productQRCode{
       width: 170px;
+      @media only screen and (max-width: 1024px) {
+        width: 137px;
+      }
     }
     #productQRCodeQty{
       width: 70px;
       text-align: center;
+      @media only screen and (max-width: 1024px) {
+        width: 55px;
+      }
     }
     &-input{
       display: inline-block;

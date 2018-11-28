@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import ReactDOM from 'react-dom';
-import UserCard from './UserCard'
-import CalcNumeric from './CalcNumeric'
+import UserCard from '../users/UserCard'
+import CalcNumeric from '../calcs/CalcNumeric'
 import { Button, FormGroup, Input, Label } from 'reactstrap';
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
-import LogoAgogo from "./../img/logo-agogo.png";
+import LogoAgogo from "./../../img/logo-agogo.png";
 import { Provider, Subscribe } from 'unstated'
-import ModalsContainer from './containers/ModalsContainer'
+import ModalsContainer from '../modals/ModalsContainer'
+import RootContainer from '../roots/RootContainer'
 
-
-import '../sass/Login.scss';
+import './Login.scss';
 
 class Login extends Component {
 
@@ -30,12 +30,12 @@ class Login extends Component {
   componentDidMount(){
 
     if(sessionStorage.getItem('users')){
-      console.log('User logged in')
+      // console.log('User logged in')
     }else{
       this.state({ redirect: true })
     }
 
-    console.log(this.props)
+    // console.log(this.props)
     let user_index = this.props.match.params.user_index;
     let users = sessionStorage.getItem('users');
     this.setState({ users: JSON.parse(users)},
@@ -44,15 +44,15 @@ class Login extends Component {
         user: this.state.users[user_index]
       },
       () => {
-        console.log(this.state.user)
+        // console.log(this.state.user)
         this.setState({
           username: this.state.user.slug,
           userAvatar: this.state.user.avatar_urls['96']
         },
         () => {
-          console.log("USERNAME")
-          console.log(this.state.username)
-          console.log(this.state.userAvatar)
+          // console.log("USERNAME")
+          // console.log(this.state.username)
+          // console.log(this.state.userAvatar)
         });
       });
     });
@@ -66,11 +66,11 @@ class Login extends Component {
   onChangeInput = event => {
     let input = event.target.value;
     this.setState({ password: input });
-    console.log("Password changed", input);
+    // console.log("Password changed", input);
   };
 
   onEnter = () => {
-    console.log("ENTERRRRRRR DARI CHILD KEYBOARD")
+    // console.log("ENTERRRRRRR DARI CHILD KEYBOARD")
     this.login()
   }
 
@@ -82,8 +82,8 @@ class Login extends Component {
 
     axios.post(`http://dev.wakwaw.com/agogo/wp-json/jwt-auth/v1/token`, userData )
       .then(res => {
-        console.log(res);
-        console.log(res.data);
+        // console.log(res);
+        // console.log(res.data);
         sessionStorage.setItem('token', res.data.token);
         this.setState({ redirect: true })
       })
@@ -100,14 +100,18 @@ class Login extends Component {
   render() {
 
     if(this.state.redirect || sessionStorage.getItem('token')){
-      return (<Redirect to={'/saldo'} />);
+      return (<Redirect to={'/initial-balance'} />);
     }
 
     return (
-      <Subscribe to={[ModalsContainer]}>
-        {modals => (
-          
+
         <section className="centered">
+
+        {/* <h1 className="text-danger text-center">Page = {this.props.rootStore.state.page}</h1>
+        <p className="text-light text-center">{JSON.stringify(this.props.match.path)}</p>
+
+          <Button onClick={() => this.props.rootStore.setCurrentPage('login')}>SET CURRENT PAGE</Button> */}
+
           <div className="login">
             <div className="container">
               <div className="row">
@@ -160,8 +164,6 @@ class Login extends Component {
           </div>
         </section>
 
-      )}
-      </Subscribe>
     )
   }
 }

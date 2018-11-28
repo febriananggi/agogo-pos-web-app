@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Subscribe } from 'unstated'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import './../sass/Modal.scss';
+import './Modal.scss';
 
-import ModalsContainer from './containers/ModalsContainer'
+import ModalsContainer from './ModalsContainer'
 
 class Modals extends Component {
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import UserList from '../UserList'
-import '../../sass/SplashScreen.scss';
+import UserList from './UserList'
+import './Users.scss';
 
 class LoginSplashScreen extends Component {
 
@@ -21,7 +21,7 @@ class LoginSplashScreen extends Component {
   
 
   render() {
-    console.log(this.state.users)
+    // console.log(this.state.users)
     return (
       <section className="LoginSplashScreen centered">
         <div className="container">

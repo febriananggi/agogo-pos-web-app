@@ -2,7 +2,7 @@ import React from 'react'
 import { Card, CardImg, CardBody, CardTitle, CardSubtitle } from 'reactstrap';
 import { Link } from 'react-router-dom'
 
-import '../sass/UserCard.scss';
+import './UserCard.scss';
 
 const UserCard = (props) => {
   return (

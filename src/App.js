@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import { Route, BrowserRouter, Switch, Redirect, Link } from 'react-router-dom'
 import { Button } from 'reactstrap';
-import { Subscribe } from 'unstated'
-import ModalsContainer from './components/containers/ModalsContainer'
 
 import decode from 'jwt-decode';
 
-import SplashScreen from './components/containers/SplashScreen';
-import Login from './components/Login';
-import SaldoAwal from './components/SaldoAwal';
-import Kasir from './components/containers/Kasir';
+import UsersContainer from './components/users/UsersContainer';
+import Login from './components/logins/Login';
+import InitialBalance from './components/balances/InitialBalance';
+import Cashier from './components/cashier/Cashier';
 
 import Fullscreen from "react-full-screen";
 
@@ -34,93 +32,146 @@ const isLoggedIn = () => {
   return !!token && !isTokenExpired(token) // handwaiving here
 }
 
-const ProtectedRoute = ({ component: Component, ...rest }) => (
-  <Route {...rest} render={(props) => (
-    isLoggedIn() === true
-      ? <Component {...props} />
-      : <Redirect to={{
-          pathname: '/',
-          state: { from: props.location }
-        }} />
-  )} />
-);
+// const ProtectedRoute = ({ component: Component, ...rest }) => (
+//   <Route {...rest} render={(props) => {
+//     console.log("GET CURRENT PATH")
+//     console.log(props.match.path)
+//     return(
+//       isLoggedIn() === true
+//       ? <Component {...props} rootStore={props.rootStore} />
+//       : <Redirect to={{
+//           pathname: '/initial-balance',
+//           state: { from: props.location }
+//         }} />
+//     )
+//   }} />
+// );
 
-const ProtectedRouteLogged = ({ component: Component, ...rest }) => (
-  <Route {...rest} render={(props) => (
-    isLoggedIn() === false
-      ? <Component {...props} />
-      : <Redirect to={{
-          pathname: '/saldo',
-          state: { from: props.location }
-        }} />
-  )} />
-);
+// const ProtectedRouteLogged = ({ component: Component, ...rest }) => (
+//   <Route {...rest} render={(props) => {
+//     console.log("GET CURRENT PATH")
+//     console.log(props.match.path)
+//     return(
+//       isLoggedIn() === false
+//       ? <Component {...props} rootStore={props.rootStore} />
+//       : <Redirect to={{
+//           pathname: '/',
+//           state: { from: props.location }
+//         }} />
+//     )
+//   }} />
+// );
 
 class App extends Component {
 
   state = {
-    isFull: true
-  }
-
-  componentWillMount() {
-    this.goFull();
+    activePath: '/'
   }
 
   logout = () => {
-    console.log("LOGOUT")
+    // console.log("LOGOUT")
     sessionStorage.setItem('token', '');
     sessionStorage.clear();
   }
 
-  setCurrentPage = (page) => {
-    this.setState({
-      page: page
-    })
-  }
+  activePath = (props) => {
+    console.log("=== ACTIVE PATH ===")
+    // console.log(props.match.path)
+    if(props.match.path !== this.state.activePath){
+      this.setState({
+        activePath: props.match.path
+      },
+      () => {
 
-  goFull = () => {
-    this.setState({ isFull: true });
+        console.log(this.state.activePath)
+      })
+    }
   }
-
+  
   render() {
-    console.log(isLoggedIn())
+    // console.log(isLoggedIn())
 
     return (
 
-      <Fullscreen enabled={this.state.isFull} onChange={isFull => this.setState({isFull})}>
+      <Fullscreen enabled={this.props.rootStore.state.isFull} onChange={isFull => this.props.rootStore.setState({isFull})}>
 
-        <footer className="Footer right">              
-          <a href="#" className="btn-fullscreen" onClick={this.goFull} >
+        <footer className="Footer right">                    
+          <a href="#" className="btn-fullscreen" onClick={this.props.rootStore.goFull} >
             <i className="fas fa-expand-arrows-alt"></i>
           </a>
+
+          {this.state.activePath === '/initial-balance' &&
+          <a href="#" className="btn-logout" onClick={() => this.props.modalStore.toggleModal('saldo', '')} >
+            <i class="fas fa-power-off"></i>
+          </a>
+          }
         </footer>
 
-        <Subscribe to={[ModalsContainer]}>
-          {modals => (
+        <BrowserRouter>
+          <div className="App">
 
-          <BrowserRouter>
-            <div className="App">
+            {/* <h1 className="text-primary text-center">Page = {this.props.rootStore.state.page}</h1> */}
+            
+            {/* GAKTAUNYA BISA KASIH FUNCTION DI ROUTE
+            INI GAK BSIA KRN ROUTENYA DI PROTECT */}
 
-              <Switch>
-                <ProtectedRouteLogged exact path='/' component={SplashScreen}/>
-                <ProtectedRouteLogged path='/login/:user_index' component={Login} />
-                <ProtectedRoute path='/saldo' component={SaldoAwal} />
-                <Route path="/logout" 
-                  render={() => {
-                    this.logout();
-                    return <Redirect to={{ pathname: "/" }} />;
-                  }}
-                />
-                <ProtectedRoute path='/kasir' component={Kasir} />
-              </Switch>
+            <Switch>
+              <Route exact path='/'
+                render={(props) => {
+                  this.activePath(props);
+                  return(
+                    isLoggedIn() === true
+                    ? <Redirect to={{ pathname: '/initial-balance', state: { from: props.location } }} />
+                    : <UsersContainer {...props} rootStore={this.props.rootStore} activePath={props.match.path} />
+                  )
+                }}
+              />
               
-            </div>
-          </BrowserRouter>
+              <Route path='/login/:user_index'
+                render={(props) => {
+                  this.activePath(props);
+                  return(
+                    isLoggedIn() === true
+                    ? <Redirect to={{ pathname: '/initial-balance', state: { from: props.location } }} />
+                    : <Login {...props} rootStore={this.props.rootStore} activePath={props.match.path} />
+                  )
+                }}
+              />
 
-          )}
-        </Subscribe>
+              <Route path='/initial-balance'
+                render={(props) => {
+                  this.activePath(props);
+                  return(
+                    isLoggedIn() === true
+                    ? <InitialBalance {...props} rootStore={this.props.rootStore} activePath={props.match.path} />
+                    : <Redirect to={{ pathname: '/', state: { from: props.location } }} />
+                  )
+                }}
+              />
 
-        
+              <Route path='/cashier'
+                render={(props) => {
+                  this.activePath(props);
+                  return(
+                    isLoggedIn() === true
+                    ? <Cashier {...props} rootStore={this.props.rootStore} activePath={props.match.path} />
+                    : <Redirect to={{ pathname: '/', state: { from: props.location } }} />
+                  )
+                }}
+              />
+
+              <Route path="/logout" 
+                render={() => {
+                  this.logout();
+                  return <Redirect to={{ pathname: "/" }} />;
+                }}
+              />
+
+              
+            </Switch>
+            
+          </div>
+        </BrowserRouter>
 
       </Fullscreen>
     );
