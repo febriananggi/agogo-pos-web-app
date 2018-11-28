@@ -3,16 +3,22 @@ import { Container } from 'unstated'
 class RootContainer extends Container {
 
   state = {
-    path: '/',
+    activePath: '/',
     isFull: false
   };
 
-  activePath = (path) => {
-    console.log("CURRENT PATH")
-    console.log(path)
-    this.setState({
-      path: path
-    })
+  activePath = (activePath) => {
+    console.log("=== ACTIVE PATH ===")
+    // console.log(props.match.path)
+    if(activePath !== this.state.activePath){
+      this.setState({
+        activePath: activePath
+      },
+      () => {
+
+        console.log(this.state.activePath)
+      })
+    }
   }
 
   goFull = () => {
