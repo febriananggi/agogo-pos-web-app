@@ -1,4 +1,5 @@
 import React from 'react'
+import NumberFormat from 'react-number-format';
 import { CardDeck, CardImg, CardBody, CardTitle, CardImgOverlay } from 'reactstrap';
 
 import './ProductItem.scss';
@@ -15,10 +16,13 @@ const ProductItem = (props) => {
               {props.productName.length < 20
                   ? `${props.productName}`
                   : `${props.productName.substring(0, 25)}...`}
-              <div><em><small>Rp {props.productPrice}</small></em></div>
+              <div>
+                <em><small><NumberFormat value={props.productPrice} displayType={'text'} thousandSeparator={true} prefix={'Rp '} /></small></em>
+              </div>
             </CardTitle>
           </CardBody> 
         </CardImgOverlay>
+        <i className="product-is-added fas fa-plus-circle"></i>
       </a>
     </CardDeck>
   )
