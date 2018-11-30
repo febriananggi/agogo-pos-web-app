@@ -5,6 +5,10 @@ import ProductItems from './ProductItems'
 
 class Products extends Component {
 
+  constructor(props){
+    super(props)
+  }
+
   state = {
     products: []
   }
@@ -16,15 +20,15 @@ class Products extends Component {
       const products = res.data;
       this.setState({ products });
       sessionStorage.setItem('products', JSON.stringify(products));
-      console.log(products)
+      // console.log(products)
     })
   }
 
   render() {
-    console.log(this.state.products)
+    // console.log(this.state.products)
     return (
       <Container className="products p-4">
-        <ProductItems products={this.state.products} />
+        <ProductItems products={this.state.products} cartStore={this.props.cartStore}  />
       </Container>
     );
   }

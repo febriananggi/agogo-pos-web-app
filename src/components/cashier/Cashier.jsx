@@ -1,37 +1,19 @@
 import React, { Component } from 'react';
-import axios from 'axios'
-import { Container, Row, Col, Nav, NavItem, NavLink, Input } from 'reactstrap';
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem } from 'reactstrap';
+import { Navbar, NavbarBrand, Container, Row, Col, Nav, NavItem, NavLink, Input } from 'reactstrap';
 import Products from '../products/Products'
 import ProductCategories from '../products/ProductCategories'
 import Cart from '../carts/Cart'
+import CalcNumericCart from '../calcs/CalcNumericCart'
+import CashierOverlay from './CashierOverlay'
+
 
 import './Cashier.scss';
 
 class Kasir extends Component {
 
-  constructor(props) {
-    super(props);
-
-    this.toggle = this.toggle.bind(this);
-    this.state = {
-      isOpen: false
-    };
+  constructor(props){
+    super(props)
   }
-  toggle() {
-    this.setState({
-      isOpen: !this.state.isOpen
-    });
-  }
-  re
 
   render() {
     return (
@@ -57,7 +39,22 @@ class Kasir extends Component {
 
             <Row className="cart-list no-gutters">
               <Col xs="12">
-                <Cart />
+
+                <Cart cartStore={this.props.cartStore} />
+
+                {this.props.cartStore.state.isCalcNumericCartOpen && (
+                <div className="calc-container">
+                  <CalcNumericCart
+                    cartStore={this.props.cartStore}
+                    onChange={this.props.cartStore.onChange} 
+                    onChangeInput={this.props.cartStore.onChangeInput} 
+                    onEnter={this.props.cartStore.onEnter} 
+                    onChangeAll={inputs => this.props.cartStore.onChangeAll(inputs)}
+                    inputName={this.props.cartStore.state.inputName}
+                  />
+                </div>
+                )}
+
               </Col>
             </Row>
 
@@ -88,7 +85,7 @@ class Kasir extends Component {
           <Col xs="6" className="kasir-product">
             <Row className="no-gutters">
               <Col xs="9">
-                <Products />
+                <Products cartStore={this.props.cartStore} />
               </Col>
               <Col xs="3">
                 <ProductCategories />
@@ -112,6 +109,8 @@ class Kasir extends Component {
                 </Navbar>
               </Col>
             </Row>
+
+            <CashierOverlay isCashierOverlayShow={this.props.cartStore.state.isCashierOverlayShow} />
           </Col>
 
         </Row>

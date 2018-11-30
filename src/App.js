@@ -4,7 +4,7 @@ import { Button } from 'reactstrap';
 
 import decode from 'jwt-decode';
 
-import UsersContainer from './components/users/UsersContainer';
+import UsersContainer from './containers/UsersContainer';
 import Login from './components/logins/Login';
 import InitialBalance from './components/balances/InitialBalance';
 import Cashier from './components/cashier/Cashier';
@@ -75,7 +75,7 @@ class App extends Component {
   }
 
   activePath = (props) => {
-    console.log("=== ACTIVE PATH ===")
+    // console.log("=== ACTIVE PATH ===")
     // console.log(props.match.path)
     if(props.match.path !== this.state.activePath){
       this.setState({
@@ -122,7 +122,9 @@ class App extends Component {
                   return(
                     isLoggedIn() === true
                     ? <Redirect to={{ pathname: '/initial-balance', state: { from: props.location } }} />
-                    : <UsersContainer {...props} rootStore={this.props.rootStore} activePath={props.match.path} />
+                    : <UsersContainer {...props} 
+                      rootStore={this.props.rootStore} 
+                      activePath={props.match.path} />
                   )
                 }}
               />
@@ -133,7 +135,10 @@ class App extends Component {
                   return(
                     isLoggedIn() === true
                     ? <Redirect to={{ pathname: '/initial-balance', state: { from: props.location } }} />
-                    : <Login {...props} rootStore={this.props.rootStore} activePath={props.match.path} />
+                    : <Login {...props} 
+                      rootStore={this.props.rootStore} 
+                      modaltore={this.props.modaltore} 
+                      activePath={props.match.path} />
                   )
                 }}
               />
@@ -143,7 +148,10 @@ class App extends Component {
                   this.activePath(props);
                   return(
                     isLoggedIn() === true
-                    ? <InitialBalance {...props} rootStore={this.props.rootStore} activePath={props.match.path} />
+                    ? <InitialBalance {...props} 
+                      rootStore={this.props.rootStore} 
+                      modaltore={this.props.modaltore} 
+                      activePath={props.match.path} /> 
                     : <Redirect to={{ pathname: '/', state: { from: props.location } }} />
                   )
                 }}
@@ -154,7 +162,11 @@ class App extends Component {
                   this.activePath(props);
                   return(
                     isLoggedIn() === true
-                    ? <Cashier {...props} rootStore={this.props.rootStore} activePath={props.match.path} />
+                    ? <Cashier {...props} 
+                        rootStore={this.props.rootStore} 
+                        modaltore={this.props.modaltore} 
+                        cartStore={this.props.cartStore} 
+                        activePath={props.match.path} />
                     : <Redirect to={{ pathname: '/', state: { from: props.location } }} />
                   )
                 }}

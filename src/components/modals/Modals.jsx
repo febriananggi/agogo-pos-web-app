@@ -3,7 +3,7 @@ import { Subscribe } from 'unstated'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import './Modal.scss';
 
-import ModalsContainer from './ModalsContainer'
+import ModalsContainer from './_ModalsContainer'
 
 class Modals extends Component {
 
@@ -12,7 +12,7 @@ class Modals extends Component {
   };
 
   renderSwitch(type) {
-    console.log(type)
+    // console.log(type)
     switch(type) {
       case 'reguler':
         return (

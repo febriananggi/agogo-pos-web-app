@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import ReactDOM from 'react-dom';
+import React, { Component } from "react"
+import ReactDOM from 'react-dom'
 import UserCard from '../users/UserCard'
 import CalcNumeric from '../calcs/CalcNumeric'
-import { Button, FormGroup, Input, Label } from 'reactstrap';
+import { Button, FormGroup, Input, Label } from 'reactstrap'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
 import LogoAgogo from "./../../img/logo-agogo.png";
 import { Provider, Subscribe } from 'unstated'
-import ModalsContainer from '../modals/ModalsContainer'
+import ModalsContainer from '../modals/_ModalsContainer'
 import RootContainer from '../roots/RootContainer'
 
 import './Login.scss';

@@ -8,7 +8,7 @@ import '../logins/Login.scss';
 import { Redirect } from 'react-router-dom'
 
 import { Provider, Subscribe } from 'unstated'
-import ModalsContainer from '../modals/ModalsContainer'
+import ModalsContainer from '../modals/_ModalsContainer'
 
 var classNames = require('classnames');
 

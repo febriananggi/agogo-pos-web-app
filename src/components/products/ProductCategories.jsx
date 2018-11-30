@@ -43,7 +43,7 @@ class ProductCategories extends Component {
   }
 
   render() {
-    console.log(this.state.categories)
+    // console.log(this.state.categories)
     return (
       <Nav className="product-categories pt-4 pb-4 pr-3">
         <NavItem>

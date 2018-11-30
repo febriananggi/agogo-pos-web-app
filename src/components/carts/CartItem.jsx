@@ -1,26 +1,34 @@
 import React from 'react'
-import { CardDeck, CardImg, CardBody, CardTitle, CardImgOverlay } from 'reactstrap';
-import { Link } from 'react-router-dom'
+import { Input } from 'reactstrap';
+import NumberFormat from 'react-number-format';
 
-import './ProductItem.scss';
-
-const ProductItem = (props) => {
+const CartItem = (props) => {
   return (
-    <CardDeck className="product-item p-1">
-      <a href="#">
-        <CardImg top width="100%" src={props.productImage} alt={props.productName} />
-        <CardImgOverlay>
-          <CardBody className="p-0">
-            <CardTitle className={props.colorTitle}>
-              {props.productName.length < 20
-                  ? `${props.productName}`
-                  : `${props.productName.substring(0, 25)}...`}
-            </CardTitle>
-          </CardBody> 
-        </CardImgOverlay>
-      </a>
-    </CardDeck>
+    <tr>
+      <td scope="row">{props.title}</td>
+      <td className="item-delete text-right">
+        <i className="fas fa-backspace btn-delete-item" onClick={() => props.cartStore.onRemoveFromCart(props.idx)} />
+      </td>
+      <td className="item-qty text-center">
+        <Input 
+          className={props.cartStore.state.activeItem === props.idx ? 'btn btn-danger focus' : 'btn btn-danger'}
+          id={"qty"+props.id} 
+          name={"qty"+props.id} 
+          type="number" 
+          size="sm" 
+          placeholder={props.qty} 
+          onClick={() => props.cartStore.setSelectedQtyID(props.idx, props.id, props.qty)}
+        />
+        {/* <input id="input1" onFocus={this.setActiveInput} value={this.state.input['input1'] || ""}/>
+        <input id="input2" onFocus={this.setActiveInput} value={this.state.input['input2'] || ""}/> */}
+
+        {/* <Button onClick={() => props.cartStore.onUpdateItem(props.id)}> + </Button> */}
+      </td>
+      <td className="text-right">
+        <NumberFormat value={props.cartStore.sumTotalAmountPerItem(props.idx)} displayType={'text'} thousandSeparator={true}  />
+      </td>
+    </tr>
   )
 }
 
-export default ProductItem
+export default CartItem
