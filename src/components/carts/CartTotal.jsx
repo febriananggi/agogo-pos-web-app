@@ -12,11 +12,11 @@ const CartTotal = (props) => {
       </tr>
       <tr className="cart-subtotal">
         <td scope="row">Biaya Tambahan</td>
-        <td className="subtotal-price"><NumberFormat value={props.cartStore.state.expenseAmount} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} /></td>
+        <td className="subtotal-price"><NumberFormat value={props.cartStore.state.expenseAmount} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp '} /></td>
       </tr>
       <tr className="cart-subtotal">
         <td scope="row">Diskon</td>
-        <td className="subtotal-price"><NumberFormat value={props.cartStore.state.discountAmount} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','}  /></td>
+        <td className="subtotal-price"><NumberFormat value={props.cartStore.state.discountAmount} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp '}  /></td>
       </tr>
       <tr className="table-spacer"><td></td></tr>
       <tr className="cart-total">

@@ -5,6 +5,7 @@
   top: 0;
   right: 0;
   display: block;
+  width: 13%;
   text-align: right;
   color: white;
   a{
@@ -36,10 +37,7 @@
 #productSearch{
   float: right;
   text-align: right;
-  width: 170px;
-  @media only screen and (min-width: 992px) {
-    width: 120px;
-  }
+  width: 90%;
   border-radius: 3rem;
   margin-top: 0.25rem;
   margin-right: 0.5rem;
