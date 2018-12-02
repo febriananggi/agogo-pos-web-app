@@ -25,7 +25,7 @@ const CartItem = (props) => {
         {/* <Button onClick={() => props.cartStore.onUpdateItem(props.id)}> + </Button> */}
       </td>
       <td className="text-right item-price">
-        <NumberFormat value={props.cartStore.sumTotalAmountPerItem(props.idx)} displayType={'text'} thousandSeparator={true}  />
+        <NumberFormat value={props.cartStore.sumTotalAmountPerItem(props.idx)} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','}  />
       </td>
     </tr>
   )
