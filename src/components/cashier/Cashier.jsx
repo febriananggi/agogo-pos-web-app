@@ -64,7 +64,7 @@ class Kasir extends Component {
                 <Navbar expand="md">
                   <NavbarBrand className="ml-4 mr-0">
                     <Input className="cart-nav-input mr-2" type="input" name="qrcode" id="productQRCode" placeholder="QR Code ..." />
-                    <Input className="cart-nav-input" type="number" name="qrcodeQty" id="productQRCodeQty" placeholder="0" />
+                    <Input className="cart-nav-input" type="number" name="qrcodeQty" id="productQRCodeQty" placeholder="0" readonly />
                   </NavbarBrand>
                   <Nav className="ml-auto" navbar>
                     <NavItem>

@@ -145,7 +145,9 @@ class Login extends Component {
                       <Input 
                         value={this.state.password} 
                         onChange={e => this.onChangeInput(e)}
-                        type="password" name="password" id="pin" placeholder="PIN"  size="lg" className="text-center" />
+                        type="password" name="password" id="pin" placeholder="PIN"  size="lg" className="text-center" 
+                        readonly
+                      />
                     </FormGroup>
                   </div>
                 </div>
