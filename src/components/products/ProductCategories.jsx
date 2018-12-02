@@ -45,7 +45,7 @@ class ProductCategories extends Component {
   render() {
     // console.log(this.state.categories)
     return (
-      <Nav className="product-categories pt-4 pb-4 pr-3">
+      <Nav className="product-categories pt-4 pb-4">
         <NavItem>
           <Input type="search" name="search" id="productSearch" placeholder="Cari produk..." />
         </NavItem>

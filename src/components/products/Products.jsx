@@ -46,7 +46,7 @@ class Products extends Component {
   render() {
     // console.log(this.state.products)
     return (
-      <Container className="products pt-4 pl-0 pr-0">
+      <Container className="products pt-4 pl-0">
 
         <ShadowScrollbars
           // This will activate auto-height
