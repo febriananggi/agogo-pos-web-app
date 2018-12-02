@@ -3,32 +3,33 @@
 .cart{
   table {
     th, td{
-      padding-top: 0rem;
-      padding-bottom: 0rem;
+      padding: 0rem .5rem;
       vertical-align: middle;
       font-weight: 700;
     }
+    th{
+      padding: 0rem .5rem;
+    }
     th.header{
-      padding-bottom: 1rem;
       font-size: 1.25rem; font-weight: 700;
-      &.item-name{
-        width: 55%;
-      }
-      &.item-delete{
-        width: 60px;
-      }
-      &.item-qty{
-        width: 100px;
-        padding-left: 1rem;
-        padding-right: 1rem;
-      }
-      &.item-price{
-        width: 150px;
-      }
+    }
+
+    .item-name{
+      width: 55%;
+    }
+    .item-delete{
+      width: 60px;
+    }
+    .item-qty{
+      width: 100px;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    .item-price{
+      width: 150px;
     }
 
     td.item-qty{
-      width: 80px;
       padding: 0;
       input{
         width: 50px;
@@ -47,7 +48,6 @@
         }
       }
     }
-
     tfoot{
       display: table;
       position: fixed;

@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import { Container, Row, Col } from 'reactstrap';
+import ShadowScrollbars from '../scrollbars/ShadowScrollbars';
+import { Container } from 'reactstrap';
 import ProductItems from './ProductItems'
+
+import "./Products.scss";
+
 
 class Products extends Component {
 
@@ -10,7 +14,10 @@ class Products extends Component {
   }
 
   state = {
-    products: []
+    products: [],
+    footerNvaBarHeight: 114,
+    windowInnerHeight: 0,
+    productItemsHeight: 0,
   }
 
   componentDidMount() {
@@ -24,11 +31,33 @@ class Products extends Component {
     })
   }
 
+  componentWillMount(){
+    this.setState({
+      windowInnerHeight: window.innerHeight
+    },
+      () => {
+        this.setState({
+          productItemsHeight: this.state.windowInnerHeight - this.state.footerNvaBarHeight
+        })
+      }
+    );
+  }
+
   render() {
     // console.log(this.state.products)
     return (
-      <Container className="products p-4">
-        <ProductItems products={this.state.products} cartStore={this.props.cartStore}  />
+      <Container className="products pt-4 pl-0 pr-0">
+
+        <ShadowScrollbars
+          // This will activate auto-height
+          autoHeight
+          autoHeightMin={100}
+          autoHeightMax={this.state.productItemsHeight}
+          isBlack
+        >
+          <ProductItems products={this.state.products} cartStore={this.props.cartStore}  />
+        </ShadowScrollbars>
+
       </Container>
     );
   }

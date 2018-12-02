@@ -1,12 +1,13 @@
 import React from 'react'
 import ProductItem from './ProductItem';
 import { Row, Col } from 'reactstrap';
+import "./ProductItems.scss";
 
 const ProductItems = (props) => {
   return (
-    <Row className="ProductItems row">
-      <Col xs="12">
-        <Row>
+    <Row className="ProductItems row m-0">
+      
+
           { props.products.map((product, index) => 
           <Col xs="4">
             <ProductItem 
@@ -42,8 +43,7 @@ const ProductItems = (props) => {
             />
           </Col>
           )}
-        </Row>
-      </Col>
+
     </Row>
   )
 }

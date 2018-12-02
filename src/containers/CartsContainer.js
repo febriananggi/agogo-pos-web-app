@@ -20,6 +20,18 @@ class CartsContainer extends Container {
     isCashierOverlayShow: false
   };
 
+  componentWillMount(){
+    this.setState({
+      windowInnerHeight: window.innerHeight
+    },
+      () => {
+        this.setState({
+          productItemsHeight: this.state.windowInnerHeight - 114
+        })
+      }
+    );
+  }
+
   onAddToCart = this.onAddToCart.bind(this);
   onRemoveFromCart = this.onRemoveFromCart.bind(this);
 

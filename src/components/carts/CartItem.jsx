@@ -5,7 +5,7 @@ import NumberFormat from 'react-number-format';
 const CartItem = (props) => {
   return (
     <tr>
-      <td scope="row">{props.title}</td>
+      <td className="item-name" scope="row">{props.title}</td>
       <td className="item-delete text-right">
         <i className="fas fa-backspace btn-delete-item" onClick={() => props.cartStore.onRemoveFromCart(props.idx)} />
       </td>
@@ -24,7 +24,7 @@ const CartItem = (props) => {
 
         {/* <Button onClick={() => props.cartStore.onUpdateItem(props.id)}> + </Button> */}
       </td>
-      <td className="text-right">
+      <td className="text-right item-price">
         <NumberFormat value={props.cartStore.sumTotalAmountPerItem(props.idx)} displayType={'text'} thousandSeparator={true}  />
       </td>
     </tr>
