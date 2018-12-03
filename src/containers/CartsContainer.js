@@ -189,7 +189,7 @@ class CartsContainer extends Container {
   sumChangePayment() {
     let totalPayment = parseInt( this.state.valueInputPayment["paymentTotal"] )
     let grandTotalAmount =  parseInt( this.state.grandTotalAmount )
-    let changePayment = totalPayment - grandTotalAmount
+    let changePayment = parseInt( totalPayment - grandTotalAmount )
     this.setState({
       changePayment: changePayment
     })
