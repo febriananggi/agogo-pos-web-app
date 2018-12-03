@@ -52,6 +52,7 @@
   .cart-list{
     position: relative;
     .calc-container{
+      z-index: 999999;
       position: absolute;
       top: 3.5rem;
       left: 100%;
@@ -137,3 +138,4 @@
   height: 100%;
   background-color: rgba(0,0,0,.75)
 }
+

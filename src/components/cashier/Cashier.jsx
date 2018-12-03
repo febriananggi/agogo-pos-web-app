@@ -5,9 +5,12 @@ import ProductCategories from '../products/ProductCategories'
 import Cart from '../carts/Cart'
 import CalcNumericCart from '../calcs/CalcNumericCart'
 import CashierOverlay from './CashierOverlay'
-
+import FooterNavLeft from '../navigations/FooterNavLeft'
+import FooterNavRight from '../navigations/FooterNavRight'
+import PaymentCheckout from '../payments/PaymentCheckout'
 
 import './Cashier.scss';
+import './SidebarComponentsWrapper.scss';
 
 class Kasir extends Component {
 
@@ -39,7 +42,6 @@ class Kasir extends Component {
 
             <Row className="cart-list no-gutters">
               <Col xs="12">
-
                 <Cart cartStore={this.props.cartStore} />
 
                 {this.props.cartStore.state.isCalcNumericCartOpen && (
@@ -54,32 +56,23 @@ class Kasir extends Component {
                   />
                 </div>
                 )}
-
               </Col>
             </Row>
 
 
             <Row className="cart-nav no-gutters">
               <Col xs="12">
-                <Navbar expand="md">
-                  <NavbarBrand className="ml-4 mr-0">
-                    <Input className="cart-nav-input mr-2" type="input" name="qrcode" id="productQRCode" placeholder="QR Code ..." />
-                    <Input className="cart-nav-input" type="number" name="qrcodeQty" id="productQRCodeQty" placeholder="0" readonly />
-                  </NavbarBrand>
-                  <Nav className="ml-auto" navbar>
-                    <NavItem>
-                      <NavLink href="/refund"><i className="fas fa-folder-open"></i><br />Buka Trx</NavLink>
-                    </NavItem>
-                    <NavItem>
-                      <NavLink href="/pemesanan"><i className="fas fa-save"></i><br />Simpan</NavLink>
-                    </NavItem>
-                    <NavItem>
-                      <NavLink href="/logout"><i className="fas fa-coins"></i><br/>Bayar</NavLink>
-                    </NavItem>
-                  </Nav>
-                </Navbar>
+                <FooterNavLeft cartStore={this.props.cartStore} />
               </Col>
             </Row>
+            
+            {this.props.cartStore.state.isPaymentCheckoutShow &&
+              <aside className="SidebarComponentsWrapper">
+                {/* PAYEMNT COMPONENTS */}
+                <PaymentCheckout cartStore={this.props.cartStore} />
+              </aside>
+            }
+
           </Col>
 
           <Col xs="6" className="kasir-product">
@@ -94,19 +87,7 @@ class Kasir extends Component {
 
             <Row className="product-nav no-gutters">
               <Col xs="12">
-                <Navbar expand="md">
-                  <Nav className="ml-auto" navbar>
-                    <NavItem>
-                      <NavLink href="/refund"><i className="fas fa-retweet"></i><br />Refund</NavLink>
-                    </NavItem>
-                    <NavItem>
-                      <NavLink href="/pemesanan"><i className="fas fa-edit"></i> <br />Pemesanan</NavLink>
-                    </NavItem>
-                    <NavItem>
-                      <NavLink href="/logout"><i className="fas fa-sign-out-alt"></i> <br />Sign Out</NavLink>
-                    </NavItem>
-                  </Nav>
-                </Navbar>
+                <FooterNavRight cartStore={this.props.cartStore} />
               </Col>
             </Row>
 

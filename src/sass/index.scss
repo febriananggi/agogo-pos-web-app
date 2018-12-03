@@ -47,6 +47,19 @@ a{
   }
 }
 
+.nav-link{
+  cursor: pointer;
+  transition: all .3s ease-in-out; -webkit-transition: all 0.3s ease-in-out;
+}
+
+.btn{
+  border: none;
+}
+
+.btn-danger{
+  background-color: $red;
+}
+
 
 .anim{
   transition: all .3s ease-in-out; -webkit-transition: all 0.3s ease-in-out;
@@ -97,3 +110,5 @@ a{
   line-height: 1;
   float: right;
 }
+
+

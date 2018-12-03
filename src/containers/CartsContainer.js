@@ -17,7 +17,11 @@ class CartsContainer extends Container {
     discountAmount: 0,
     expenseAmount: 0,
     grandTotalAmount: 0,
-    isCashierOverlayShow: false
+    isCashierOverlayShow: false,
+    isPaymentCheckoutShow: false,
+    valueInputPayment: '',
+    activeInputPayment: '',
+    discountType: '%'
   };
 
   componentWillMount(){
@@ -32,6 +36,10 @@ class CartsContainer extends Container {
     );
   }
 
+
+  // ===============
+  // CART ACTION
+  // ===============
   onAddToCart = this.onAddToCart.bind(this);
   onRemoveFromCart = this.onRemoveFromCart.bind(this);
 
@@ -169,10 +177,20 @@ class CartsContainer extends Container {
   }
   sumGrandTotalAmount() {
     let sumTotalAmount = this.state.totalAmount
+    // let discount = this.state.totalAmount
     let otherExpenses = parseInt( this.state.expenseAmount + this.state.discountAmount )
     let grandTotalAmount = parseInt( sumTotalAmount - otherExpenses )
     this.setState({
       grandTotalAmount: grandTotalAmount
+    })
+  }
+
+  sumChangePayment() {
+    let totalPayment = parseInt( this.state.valueInputPayment["paymentTotal"] )
+    let grandTotalAmount =  parseInt( this.state.grandTotalAmount )
+    let changePayment = totalPayment - grandTotalAmount
+    this.setState({
+      changePayment: changePayment
     })
   }
 
@@ -221,6 +239,63 @@ class CartsContainer extends Container {
       isCashierOverlayShow: !this.state.isCashierOverlayShow
     })
   }
+
+
+
+  // ===============
+  // PAYMENT ACTIONS
+  // ===============
+  paymentCheckout = () => {
+    console.log("paymentCheckout")
+    this.togglePaymentCheckoutShow()
+  }
+
+  togglePaymentCheckoutShow = () => {
+    this.setState({
+      isPaymentCheckoutShow: !this.state.isPaymentCheckoutShow
+    })
+  }
+
+  setActiveInputPayment = (event) => {
+    console.log('event', event.target.id)
+    this.setState({
+      activeInputPayment: event.target.id
+    },
+      () => {
+        console.log("setActiveInput", this.state.activeInputPayment)
+      }
+    );
+  }
+
+  onChangePayment = valueInputPayment => {
+    this.setState({
+      valueInputPayment: valueInputPayment
+    });
+    console.log("Input changed", valueInputPayment);
+  };
+
+  onKeyPressPayment = (button) => {
+    console.log("Button pressed", button);
+
+    if (button === "{rp}") {
+      this.setState({
+        discountType: 'Rp'
+      })
+    }
+    if (button === "{percentage}") {
+      this.setState({
+        discountType: '%'
+      })
+    }
+    if (button === "{enter}") {
+      this.onEnterPayment();
+    }
+  };
+
+  onEnterPayment = () => {
+    console.log("Button ENTER pressed");
+    this.sumChangePayment()
+  };
 
 }
 

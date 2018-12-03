@@ -22,7 +22,7 @@ const CartTotal = (props) => {
       <tr className="cart-total">
         <th className="header grand-total-label">Sisa Pembayaran</th>
         <th className="header text-right grand-total">
-          <NumberFormat value={props.cartStore.state.grandTotalAmount} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp '} />,-
+          <NumberFormat value={props.cartStore.state.grandTotalAmount} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp '} suffix={',-'} />
         </th>
       </tr>
     </tfoot>
