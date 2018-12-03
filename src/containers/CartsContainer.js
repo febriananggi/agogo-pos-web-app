@@ -21,7 +21,8 @@ class CartsContainer extends Container {
     isPaymentCheckoutShow: false,
     valueInputPayment: '',
     activeInputPayment: '',
-    discountType: '%'
+    discountType: '%',
+    changePayment: 0
   };
 
   componentWillMount(){
