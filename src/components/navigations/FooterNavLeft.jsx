@@ -19,7 +19,7 @@ const FooterNavLeft = (props) => {
           <NavLink href="#"><i className="fas fa-save"></i><br />Simpan</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink onClick={() => props.cartStore.paymentCheckout()}><i className="fas fa-coins"></i><br/>Bayar</NavLink>
+          <NavLink active={props.cartStore.state.isPaymentCheckoutShow} onClick={() => props.cartStore.paymentCheckout()}><i className="fas fa-coins"></i><br/>Bayar</NavLink>
         </NavItem>
       </Nav>
 

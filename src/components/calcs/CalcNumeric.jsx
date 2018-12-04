@@ -72,7 +72,7 @@ class CalcNumeric extends Component {
               buttons: "{enter}"
             },
             {
-              class: "bg-black text-lightGrey",
+              class: "bg-black text-light-grey",
               buttons: "{bksp}"
             }
           ]}

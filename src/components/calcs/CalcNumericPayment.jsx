@@ -12,6 +12,14 @@ class CalcNumeric extends Component {
     valueInputPayment: '',
     inputName: ''
   };
+
+  onKeyPress = (button) => {
+    if (button === "{rp}" || button === "{percentage}") {
+      this.keyboard.clearInput("paymentDiscount");
+      this.props.cartStore.onResetPayment()
+    }
+    this.props.cartStore.onKeyPressPayment(button)
+  };
   
   render() {
     return (
@@ -20,7 +28,7 @@ class CalcNumeric extends Component {
           ref={r => (this.keyboard = r)}
           layoutName={this.state.layoutName}
           layout={{
-            default: ["{rp} {percentage}", "1 2 3", "4 5 6", "7 8 9", "{bksp} 0 {enter}"]
+            default: ["1 2 3", "4 5 6", "7 8 9", "0 00 000", "{bksp} {rp} {percentage}"]
           }}
           display={{
             '{bksp}': '<i class="fas fa-backspace"></i>',
@@ -34,7 +42,7 @@ class CalcNumeric extends Component {
               buttons: "{enter}"
             },
             {
-              class: "bg-red text-lightGrey",
+              class: "bg-red text-light-grey",
               buttons: "{bksp}"
             },
             {
@@ -44,7 +52,7 @@ class CalcNumeric extends Component {
           ]}
           inputName={this.props.cartStore.state.activeInputPayment}
           onChangeAll={inputs => this.props.cartStore.onChangePayment(inputs)}
-          onKeyPress={button => this.props.cartStore.onKeyPressPayment(button)}
+          onKeyPress={button => this.onKeyPress(button)}
         />
 
       </div>

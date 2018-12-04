@@ -28,7 +28,7 @@
     background-color: black;
     line-height: 1.5rem;
     text-align: right;
-    z-index: 999;
+    z-index: 3;
     .navbar{
       padding: 0;
     }
@@ -52,7 +52,7 @@
   .cart-list{
     position: relative;
     .calc-container{
-      z-index: 999999;
+      z-index: 9 !important;
       position: absolute;
       top: 3.5rem;
       left: 100%;
@@ -131,6 +131,7 @@
 }
 
 .CashierOverlay{
+  z-index: 8;
   position: fixed;
   top: 0;
   left: 50%;

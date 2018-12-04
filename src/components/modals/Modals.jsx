@@ -3,13 +3,20 @@ import { Subscribe } from 'unstated'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import './Modal.scss';
 
-import ModalsContainer from './_ModalsContainer'
+import RootContainer from '../../containers/RootContainer'
+import ModalsContainer from '../../containers/ModalsContainer'
+import CartsContainer from '../../containers/CartsContainer'
 
 class Modals extends Component {
 
   constructor(props) {
     super(props);
   };
+
+  clearCartCloseModal = (props) => {
+    this.props.cartStore.clearCart()
+    this.props.toggle()
+  }
 
   renderSwitch(type) {
     // console.log(type)
@@ -53,6 +60,16 @@ class Modals extends Component {
           </ModalFooter>
         </Modal>
       );
+      case 'bayar':
+        return (
+        <Modal isOpen={this.props.modal} toggle={this.props.toggle} className={this.props.className} size={this.props.size} centered>
+          <ModalBody className="p-5">
+            <i className="fas fa-check font-weight-bold display-3 text-red"></i>
+            <h2 className="display-6 py-3">Transaksi Berhasil!</h2>
+            <Button className="mt-3 py-3 px-5" color="danger" size="lg" onClick={this.clearCartCloseModal}><i class="fas fa-check mr-1"></i> Selesai</Button>
+          </ModalBody>
+        </Modal>
+      );
       default:
         return (
         <Modal isOpen={this.props.modal} toggle={this.props.toggle} className={this.props.className} size={this.props.size} centered>
@@ -71,10 +88,10 @@ class Modals extends Component {
 
   render() {
     return (
-      <Subscribe to={[ModalsContainer]}>
-      {modalsContainer => (
+      <Subscribe to={[RootContainer, ModalsContainer, CartsContainer]}>
+      {(rootStore, modalStore, cartStore) => (
         <div>
-          {this.renderSwitch('logout')}
+          {this.renderSwitch(modalStore.state.modalType)}
         </div>
       )}
     </Subscribe>

@@ -167,7 +167,7 @@ class SaldoAwal extends Component {
                               buttons: "{enter}"
                             },
                             {
-                              class: "bg-black text-lightGrey",
+                              class: "bg-black text-light-grey",
                               buttons: "{bksp}"
                             }
                           ]}
@@ -194,7 +194,7 @@ class SaldoAwal extends Component {
                               buttons: "{enter}"
                             },
                             {
-                              class: "bg-black text-lightGrey",
+                              class: "bg-black text-light-grey",
                               buttons: "{bksp}"
                             }
                           ]}

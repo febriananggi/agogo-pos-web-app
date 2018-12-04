@@ -28,6 +28,9 @@ ReactDOM.render(
             toggleModal={modalStore.toggleModal} 
             size={modalStore.state.modalSize} 
             className="text-center" 
+            rootStore={rootStore} 
+            modalStore={modalStore} 
+            cartStore={cartStore}
           />
 
           <App 

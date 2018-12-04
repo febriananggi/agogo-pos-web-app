@@ -137,7 +137,7 @@ class App extends Component {
                     ? <Redirect to={{ pathname: '/initial-balance', state: { from: props.location } }} />
                     : <Login {...props} 
                       rootStore={this.props.rootStore} 
-                      modaltore={this.props.modaltore} 
+                      modalStore={this.props.modalStore} 
                       activePath={props.match.path} />
                   )
                 }}
@@ -150,7 +150,7 @@ class App extends Component {
                     isLoggedIn() === true
                     ? <InitialBalance {...props} 
                       rootStore={this.props.rootStore} 
-                      modaltore={this.props.modaltore} 
+                      modalStore={this.props.modalStore} 
                       activePath={props.match.path} /> 
                     : <Redirect to={{ pathname: '/', state: { from: props.location } }} />
                   )
@@ -164,7 +164,7 @@ class App extends Component {
                     isLoggedIn() === true
                     ? <Cashier {...props} 
                         rootStore={this.props.rootStore} 
-                        modaltore={this.props.modaltore} 
+                        modalStore={this.props.modalStore} 
                         cartStore={this.props.cartStore} 
                         activePath={props.match.path} />
                     : <Redirect to={{ pathname: '/', state: { from: props.location } }} />

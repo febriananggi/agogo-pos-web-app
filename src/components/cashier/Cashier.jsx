@@ -42,7 +42,7 @@ class Kasir extends Component {
 
             <Row className="cart-list no-gutters">
               <Col xs="12">
-                <Cart cartStore={this.props.cartStore} />
+                <Cart cartStore={this.props.cartStore} modalStore={this.props.modalStore} />
 
                 {this.props.cartStore.state.isCalcNumericCartOpen && (
                 <div className="calc-container">
@@ -69,7 +69,7 @@ class Kasir extends Component {
             {this.props.cartStore.state.isPaymentCheckoutShow &&
               <aside className="SidebarComponentsWrapper">
                 {/* PAYEMNT COMPONENTS */}
-                <PaymentCheckout cartStore={this.props.cartStore} />
+                <PaymentCheckout cartStore={this.props.cartStore} modalStore={this.props.modalStore} />
               </aside>
             }
 

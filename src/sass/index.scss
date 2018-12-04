@@ -90,8 +90,8 @@ a{
 .text-orange{
   color: $orange;
 }
-.text-lightGrey{
-  color: $lightGrey;
+.text-light-grey{
+  color: $lightGrey !important;
 }
 
 
@@ -111,4 +111,19 @@ a{
   float: right;
 }
 
+// ======
+// MODALS
+// ======
+.modal-content{
+  border-radius: 2rem;
+  border: none;
+}
 
+
+// NAV LINKS
+// =========
+.nav-link{
+  &.active{
+    background-color: $orange;
+  }
+}

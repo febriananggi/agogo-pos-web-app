@@ -14,6 +14,7 @@ class ModalsContainer extends Container {
       modalSize: size
     },
     () => {
+      console.log("MODAL TYPE =>", this.state.modalType)
       this.setState({
         modal: !this.state.modal
       });
