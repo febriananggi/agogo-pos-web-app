@@ -16,7 +16,7 @@ class Cart extends Component {
 
   state = {
     cart: [],
-    footerNvaBarHeight: 374,
+    footerNvaBarHeight: 350,
     windowInnerHeight: 0,
     productItemsHeight: 0,
   }
