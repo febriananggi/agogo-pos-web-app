@@ -30,7 +30,7 @@ const PaymentCheckout = (props) => {
             <h5>DISKON</h5>
             {/* <Input className="mb-4" type="text" name="paymentDiscount" id="paymentDiscount" placeholder=" ..." bsSize="lg" /> */}
             {props.cartStore.state.discountType === 'Rp' &&
-            <div className="input-keyboard-wrapper">
+            <div className={props.cartStore.state.activeInputPayment === 'paymentDiscount' ? 'input-keyboard-wrapper active-input' : 'input-keyboard-wrapper'}>
               <NumberFormat type="text" thousandSeparator={'.'} decimalSeparator={','} className="mb-4 form-control-lg form-control" placeholder="Rp 0" 
                 value={props.cartStore.state.valueInputPayment["paymentDiscount"] || ""}
                 name="paymentDiscount" id="paymentDiscount"
@@ -64,7 +64,7 @@ const PaymentCheckout = (props) => {
             <h3><strong><NumberFormat value={props.cartStore.state.grandTotalAmountDiscount} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp '} /></strong></h3>
 
             <h5 className="mt-4">TOTAL PEMBAYARAN</h5>
-            <div className="input-keyboard-wrapper">
+            <div className={props.cartStore.state.activeInputPayment === 'paymentTotal' ? 'input-keyboard-wrapper active-input' : 'input-keyboard-wrapper'}>
               <NumberFormat thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp '} className="mb-4 form-control-lg form-control" placeholder="Rp 0"  
                 value={props.cartStore.state.valueInputPayment["paymentTotal"] || ""}
                 name="paymentTotal" id="paymentTotal"
