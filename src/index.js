@@ -9,6 +9,7 @@ import './sass/Forms.scss';
 import RootContainer from './containers/RootContainer'
 import ModalsContainer from './containers/ModalsContainer'
 import CartsContainer from './containers/CartsContainer'
+import ProductsContainer from './containers/ProductsContainer'
 
 import Modals from './components/modals/Modals';
 import App from './App';
@@ -18,9 +19,10 @@ import * as serviceWorker from './serviceWorker';
 ReactDOM.render(
   <Provider>
 
-    <Subscribe to={[RootContainer, ModalsContainer, CartsContainer]}>
-      {(rootStore, modalStore, cartStore) => (
+    <Subscribe to={[RootContainer, ModalsContainer, CartsContainer, ProductsContainer]}>
+      {(rootStore, modalStore, cartStore, productStore) => (
         <React.Fragment>
+          
           <Modals 
             type={modalStore.state.modalType} 
             modal={modalStore.state.modal} 
@@ -31,12 +33,14 @@ ReactDOM.render(
             rootStore={rootStore} 
             modalStore={modalStore} 
             cartStore={cartStore}
+            productStore={productStore}
           />
 
           <App 
             rootStore={rootStore} 
             modalStore={modalStore} 
             cartStore={cartStore}
+            productStore={productStore}
           />
 
         </React.Fragment>

@@ -33,7 +33,7 @@ class Kasir extends Component {
                       <NavLink href="/pemesanan">Order #TK-1800000014</NavLink>
                     </NavItem>
                     <NavItem>
-                      <NavLink href="/logout" className="navbar-close"><i className="fas fa-times"></i></NavLink>
+                      <NavLink onClick={() => this.props.modalStore.toggleModal('clearCart', '')} className="navbar-close"><i className="fas fa-times"></i></NavLink>
                     </NavItem>
                   </Nav>
                 </Navbar>
@@ -78,10 +78,10 @@ class Kasir extends Component {
           <Col xs="6" className="kasir-product">
             <Row className="no-gutters">
               <Col xs="9">
-                <Products cartStore={this.props.cartStore} />
+                <Products cartStore={this.props.cartStore} productStore={this.props.productStore} />
               </Col>
               <Col xs="3">
-                <ProductCategories />
+                <ProductCategories productStore={this.props.productStore} />
               </Col>
             </Row>
 

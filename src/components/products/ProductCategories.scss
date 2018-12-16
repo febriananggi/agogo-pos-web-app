@@ -13,12 +13,12 @@
   }
   .nav-item{
     clear: both;
-    &:nth-child(2){
-      .nav-link{
-        color: $orange;
-        border-right: 5px solid $orange;
-      }
-    }
+    // &:nth-child(2){
+    //   .nav-link{
+    //     color: $orange;
+    //     border-right: 5px solid $orange;
+    //   }
+    // }
   }
   .nav-link{
     padding: 0.75rem;
@@ -29,6 +29,7 @@
     &.active{
       color: $orange;
       border-right: 5px solid $orange;
+      background-color: transparent;
     }
   }
 }
@@ -44,4 +45,7 @@
   margin-bottom: 1rem;
   border: none;
   font-style: italic;
+  &::placeholder {
+    color: $lightGrey;
+  }
 }

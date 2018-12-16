@@ -70,6 +70,16 @@ class Modals extends Component {
           </ModalBody>
         </Modal>
       );
+      case 'clearCart':
+        return (
+        <Modal isOpen={this.props.modal} toggle={this.props.toggle} className={this.props.className} size={this.props.size} centered>
+          <ModalBody className="p-5">
+            <i className="fas fa-times font-weight-bold display-3 text-red"></i>
+            <h2 className="display-6 py-3">Apakah Anda yakin ingin menghapus Cart?</h2>
+            <Button className="mt-3 py-3 px-5" color="danger" size="lg" onClick={this.clearCartCloseModal}><i class="fas fa-times mr-1"></i> Ya, Hapus!</Button>
+          </ModalBody>
+        </Modal>
+      );
       default:
         return (
         <Modal isOpen={this.props.modal} toggle={this.props.toggle} className={this.props.className} size={this.props.size} centered>

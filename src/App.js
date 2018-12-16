@@ -166,6 +166,7 @@ class App extends Component {
                         rootStore={this.props.rootStore} 
                         modalStore={this.props.modalStore} 
                         cartStore={this.props.cartStore} 
+                        productStore={this.props.productStore} 
                         activePath={props.match.path} />
                     : <Redirect to={{ pathname: '/', state: { from: props.location } }} />
                   )
